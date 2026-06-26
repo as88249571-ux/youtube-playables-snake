@@ -1,181 +1,128 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@1,100..900&family=Syne+Mono&display=swap');
-*{
+/* --- स्नेक गेम कम्पलीट फिक्स कोड --- */
+* {
     padding: 0;
     margin: 0;
-
+    box-sizing: border-box;
 }
+
+@import url('https://googleapis.com');
 
 body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-    /* यहाँ हमने डार्क पर्पल शेड और आपकी साँप वाली इमेज दोनों को मिक्स कर दिया है */
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 27, 75, 0.95)), 
-                url('bg.jpg.png') no-repeat center center; 
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 27, 75, 0.95)), url('bg.jpg.png') no-repeat center center;
     background-size: cover;
+    color: white;
+    font-family: 'Poppins', sans-serif;
 }
- #board {
-    background-color: #0d1117; /* डार्क नाइट बैकग्राउंड */
-    width: 90vmin;
-    height: 92vmin;
-    border: 3px solid #00f2fe; /* नियन ब्लू बॉर्डर */
-    box-shadow: 0 0 20px #00f2fe; /* बॉर्डर पर चमक (Glow effect) */
+
+#score {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+#board {
+    background-color: #0d1117;
+    width: 450px;
+    height: 450px;
+    border: 3px solid #00f2fe;
+    box-shadow: 0 0 20px #00f2fe;
     display: grid;
     grid-template-rows: repeat(18, 1fr);
     grid-template-columns: repeat(18, 1fr);
 }
 
+/* स्नेक और फ़ूड की स्टाइल */
 .head {
-    background: linear-gradient(135deg, #00f2fe, #4facfe); /* सिर को बॉडी जैसा ही नियन ब्लू लुक देने के लिए */
-    border: 2px solid #ffffff; /* सफेद बॉर्डर जिससे सिर अलग से चमके */
-    box-shadow: 0 0 15px #00f2fe; /* सिर के चारों तरफ एक बढ़िया ग्लो इफेक्ट */
-    transform: scale(1.1); /* सिर को बॉडी से थोड़ा सा बड़ा दिखाने के लिए */
-    border-radius: 50%; /* सिर को गोल शेप देने के लिए */
+    background: linear-gradient(to right, #00f2fe, #4facfe);
+    border-radius: 4px;
+}
+.snake {
+    background-color: #4facfe;
+    border-radius: 4px;
+}
+.food {
+    background: linear-gradient(to right, #ff0844, #ffb199);
+    border-radius: 50%;
 }
 
-.snake{
-    background-color:rgb(26, 22, 26);
-    border: .25vmin solid white;
-    border-radius: 12px;
- }
-.food{
-   background: linear-gradient(red , purple);
-   border: .25vmin solid black;
-   border-radius: 8px;
-}
-
-#score {
-    position: absolute;
-    top: 9px;
-    right: 200px;
-    font-size: 32px; /* थोड़ा बड़ा साइज */
-    font-weight: 900; /* ज्यादा बोल्ड */
-    font-family: "Roboto Condensed", sans-serif;
-    color: #ffffff; /* चमकदार सफेद टेक्स्ट */
-    text-shadow: 0 0 10px #00f2fe, 0 0 20px #00f2fe; /* नियन ब्लू ग्लो इफेक्ट */
-}
-/* मोबाइल बटन्स की स्टाइलिंग */
+/* मोबाइल कंट्रोल्स स्टाइल */
 .mobile-controls {
-    display: none; /* कंप्यूटर पर बटन छुपे रहेंगे */
+    display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 .middle-row {
     display: flex;
     justify-content: space-between;
-    width: 140px;
-    margin: 5px 0;
+    width: 170px;
+    margin: 8px 0;
 }
 
 .control-btn {
-    width: 60px;
-    height: 60px;
-    font-size: 24px;
-    background-color: #333;
+    width: 55px;
+    height: 55px;
+    font-size: 22px;
+    background-color: #1e293b;
     color: white;
-    border: none;
+    border: 2px solid #00f2fe;
     border-radius: 50%;
     cursor: pointer;
-    user-select: none; /* टच करने पर टेक्स्ट सेलेक्ट न हो */
-}
-
-.control-btn:active {
-    background-color: #555; /* दबाने पर बटन का रंग बदलेगा */
-}
-
-/* मोबाइल बटन्स की स्टाइलिंग */
-.mobile-controls {
-    display: none; /* कंप्यूटर पर बटन छुपे रहेंगे */
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.middle-row {
     display: flex;
-    justify-content: space-between;
-    width: 140px;
-    margin: 5px 0;
-}
-
-.control-btn {
-    width: 60px;
-    height: 60px;
-    font-size: 24px;
-    background-color: #333;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    user-select: none; /* टच करने पर टेक्स्ट सेलेक्ट न हो */
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
 }
 
 .control-btn:active {
-    background-color: #555; /* दबाने पर बटन का रंग बदलेगा */
+    background-color: #00f2fe;
+    color: #0f172a;
 }
 
-/* --- मोबाइल रिस्पॉन्सिव कोड --- */
+/* ======================================================= */
+/* --- स्पेशल मोबाइल स्क्रीन फिक्स (768px से छोटी स्क्रीन्स के लिए) --- */
+/* ======================================================= */
 @media screen and (max-width: 768px) {
-  
-  /* 1. पूरी स्क्रीन का लेआउट */
-  .body {
-    min-height: 80vh !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 10px;
-    box-sizing: border-box;
+  body {
+    justify-content: flex-start !important;
+    padding: 15px 10px !important;
   }
 
-  /* 2. गेम बोर्ड को मोबाइल स्क्रीन में फिट करना */
-  #board {
-    width: 85vw !important;   
-    height: 85vw !important;  
-    max-width: 360px !important; 
-    max-height: 360px !important;
-    margin: 10px auto !important; 
-  }
-
-  /* 3. स्कोर टेक्स्ट */
   #score {
     font-size: 26px !important;
-    text-align: center;
-    margin-bottom: 5px;
+    margin-bottom: 8px !important;
   }
 
-  /* 4. मोबाइल कंट्रोल बटन्स को सेंटर में लाना */
+  #board {
+    width: 88vw !important;   
+    height: 88vw !important;  
+    max-width: 340px !important; 
+    max-height: 340px !important;
+    margin: 5px auto !important; 
+  }
+
   .mobile-controls {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    margin-top: 20px !important; 
+    margin-top: 15px !important; 
     width: 100% !important;
-    position: relative !important;
-    left: auto !important;
-    right: auto !important;
-    bottom: auto !important;
   }
 
-  /* Left और Right बटन्स को एक लाइन में रखना */
   .middle-row {
-    display: flex !important;
-    justify-content: space-between !important;
-    width: 160px !important; 
-    margin: 5px 0 !important;
+    width: 140px !important; 
+    margin: 4px 0 !important;
   }
 
-  /* सभी कंट्रोल बटन्स का मोबाइल साइज */
   .control-btn {
-    width: 50px !important;
-    height: 50px !important;
-    font-size: 20px !important;
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 18px !important;
   }
 }

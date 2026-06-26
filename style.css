@@ -121,9 +121,62 @@ body {
     background-color: #555; /* दबाने पर बटन का रंग बदलेगा */
 }
 
-/* मीडिया क्वेरी: जब स्क्रीन छोटी (मोबाइल) होगी तब बटन्स दिखेंगे */
-@media (max-width: 768px) {
-    .mobile-controls {
-        display: flex;
-    }
+/* --- मोबाइल रिस्पॉन्सिव कोड --- */
+@media screen and (max-width: 768px) {
+  
+  /* 1. पूरी स्क्रीन का लेआउट */
+  .body {
+    min-height: 80vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  /* 2. गेम बोर्ड को मोबाइल स्क्रीन में फिट करना */
+  #board {
+    width: 85vw !important;   
+    height: 85vw !important;  
+    max-width: 360px !important; 
+    max-height: 360px !important;
+    margin: 10px auto !important; 
+  }
+
+  /* 3. स्कोर टेक्स्ट */
+  #score {
+    font-size: 26px !important;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  /* 4. मोबाइल कंट्रोल बटन्स को सेंटर में लाना */
+  .mobile-controls {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-top: 20px !important; 
+    width: 100% !important;
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+  }
+
+  /* Left और Right बटन्स को एक लाइन में रखना */
+  .middle-row {
+    display: flex !important;
+    justify-content: space-between !important;
+    width: 160px !important; 
+    margin: 5px 0 !important;
+  }
+
+  /* सभी कंट्रोल बटन्स का मोबाइल साइज */
+  .control-btn {
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 20px !important;
+  }
 }

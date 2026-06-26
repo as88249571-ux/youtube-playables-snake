@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@1,100..900&family=Syne+Mono&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* यहाँ हमने डार्क पर्पल शेड और आपकी साँप वाली इमेज दोनों को मिक्स कर दिया है */
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 27, 75, 0.95)), 
+                url('bg.jpg.png') no-repeat center center; 
+    background-size: cover;
+}
+ #board {
+    background-color: #0d1117; /* डार्क नाइट बैकग्राउंड */
+    width: 90vmin;
+    height: 92vmin;
+    border: 3px solid #00f2fe; /* नियन ब्लू बॉर्डर */
+    box-shadow: 0 0 20px #00f2fe; /* बॉर्डर पर चमक (Glow effect) */
+    display: grid;
+    grid-template-rows: repeat(18, 1fr);
+    grid-template-columns: repeat(18, 1fr);
+}
+
+.head {
+    background: linear-gradient(135deg, #00f2fe, #4facfe); /* सिर को बॉडी जैसा ही नियन ब्लू लुक देने के लिए */
+    border: 2px solid #ffffff; /* सफेद बॉर्डर जिससे सिर अलग से चमके */
+    box-shadow: 0 0 15px #00f2fe; /* सिर के चारों तरफ एक बढ़िया ग्लो इफेक्ट */
+    transform: scale(1.1); /* सिर को बॉडी से थोड़ा सा बड़ा दिखाने के लिए */
+    border-radius: 50%; /* सिर को गोल शेप देने के लिए */
+}
+
+.snake{
+    background-color:rgb(26, 22, 26);
+    border: .25vmin solid white;
+    border-radius: 12px;
+ }
+.food{
+   background: linear-gradient(red , purple);
+   border: .25vmin solid black;
+   border-radius: 8px;
+}
+
+#score {
+    position: absolute;
+    top: 9px;
+    right: 200px;
+    font-size: 32px; /* थोड़ा बड़ा साइज */
+    font-weight: 900; /* ज्यादा बोल्ड */
+    font-family: "Roboto Condensed", sans-serif;
+    color: #ffffff; /* चमकदार सफेद टेक्स्ट */
+    text-shadow: 0 0 10px #00f2fe, 0 0 20px #00f2fe; /* नियन ब्लू ग्लो इफेक्ट */
+}
+/* मोबाइल बटन्स की स्टाइलिंग */
+.mobile-controls {
+    display: none; /* कंप्यूटर पर बटन छुपे रहेंगे */
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.middle-row {
+    display: flex;
+    justify-content: space-between;
+    width: 140px;
+    margin: 5px 0;
+}
+
+.control-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none; /* टच करने पर टेक्स्ट सेलेक्ट न हो */
+}
+
+.control-btn:active {
+    background-color: #555; /* दबाने पर बटन का रंग बदलेगा */
+}
+
+/* मोबाइल बटन्स की स्टाइलिंग */
+.mobile-controls {
+    display: none; /* कंप्यूटर पर बटन छुपे रहेंगे */
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.middle-row {
+    display: flex;
+    justify-content: space-between;
+    width: 140px;
+    margin: 5px 0;
+}
+
+.control-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none; /* टच करने पर टेक्स्ट सेलेक्ट न हो */
+}
+
+.control-btn:active {
+    background-color: #555; /* दबाने पर बटन का रंग बदलेगा */
+}
+
+/* मीडिया क्वेरी: जब स्क्रीन छोटी (मोबाइल) होगी तब बटन्स दिखेंगे */
+@media (max-width: 768px) {
+    .mobile-controls {
+        display: flex;
+    }
+}

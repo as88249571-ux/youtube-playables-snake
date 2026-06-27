@@ -199,3 +199,17 @@ if (typeof ytgame !== 'undefined') {
         console.log("YouTube System: Game Resumed");
     });
 }
+
+function subscribeToChannel() {
+  
+    // ध्यान रहे कि अंत में ?sub_confirmation=1 ज़रूर लगा रहे ताकि डायरेक्ट सब्सक्राइब का पॉप-अप आए
+    const channelUrl = 'https://www.youtube.com/@webdevloper-r5w';
+    
+    if (typeof ytgame !== 'undefined' && ytgame.engagement) {
+        ytgame.engagement.openYTContent({
+            url: channelUrl
+        });
+    } else {
+        window.open(channelUrl, '_blank');
+    }
+}
